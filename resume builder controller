@@ -1,0 +1,43 @@
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+
+public class ResumeBuilderController {
+
+    @FXML
+    private ComboBox<String> templateComboBox;
+
+    @FXML
+    private TextField nameTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField phoneTextField;
+
+    @FXML
+    public void generateResume(ActionEvent event) {
+        // Get the selected template
+        String template = templateComboBox.getSelectionModel().getSelectedItem();
+
+        // Get the user input
+        String name = nameTextField.getText();
+        String email = emailTextField.getText();
+        String phone = phoneTextField.getText();
+
+        // Create a new resume object
+        Resume resume = new Resume(template, name, email, phone);
+
+        // Generate the resume content
+        String resumeContent = resume.generateResume();
+
+        // Export the resume to a file
+        exportResume(resumeContent);
+    }
+
+    private void exportResume(String resumeContent) {
+        // TO DO: Implement export functionality to save the resume to a file
+    }
+}
